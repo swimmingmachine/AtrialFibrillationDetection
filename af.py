@@ -11,7 +11,7 @@ ds = wfdb.rdrecord(f"{ds_path}/{ds_name}")
 # annotation = wfdb.rdann(f"{ds_path}/{ds_name}", 'qrs')
 fs=ds.fs
 
-n_samples = int(1 * fs)
+n_samples = int(3 * fs)
 data_3s = ds.p_signal[:n_samples]
 
 #raw ecg signal 
@@ -65,24 +65,21 @@ time = np.arange(num_samples) / fs  # Time in seconds
 plt.figure(figsize=(10,4))
 # # plt.scatter(annotation.sample[start_idx:end_idx], [ds.p_signal[i, 1] for i in annotation.sample[start_idx:end_idx]], 
 # #            color='red', label="QRS Peaks")
-plt.plot(time, ecg_raw, label="Raw ECG", color='gray')
-plt.plot(time, ecg_band, label="Bandpass ECG", color='r')
-plt.plot(time, ecg_notch, label="Notch ECG", color='g')
-plt.plot(time, ecg_hp, label="Highpass ECG", color='b')
-plt.plot(time, ecg_wv, label="Wavelet ECG", color='m')
+# plt.plot(time, ecg_raw, label="Raw ECG", color='gray')
+# plt.plot(time, ecg_band, label="Bandpass ECG", color='r')
+# plt.plot(time, ecg_notch, label="Notch ECG", color='g')
+# plt.plot(time, ecg_hp, label="Highpass ECG", color='b')
+# plt.plot(time, ecg_wv, label="Wavelet ECG", color='m')
 
-plt.xlabel("Time (s)")
-plt.ylabel("Amplitude (mV)")
-plt.legend()
-plt.title("ECG Signal")
-
-# plt.figure(figsize=(10, 4))
-# plt.plot(time[:-1], ecg_mv, label="Wavelet ECG", color='m')
-
-# plt.plot(time[:-1], ecg_mv, label="MV Signal", color='blue')
-# plt.scatter(time[peaks], ecg_mv[peaks], color='black', label="QRS Peaks", marker='o')
-# plt.title("QRS Detection")
+# plt.xlabel("Time (s)")
+# plt.ylabel("Amplitude (mV)")
 # plt.legend()
+# plt.title("ECG Signal")
+
+plt.plot(time[:-1], ecg_mv, label="MV Signal", color='blue')
+plt.scatter(time[peaks], ecg_mv[peaks], color='black', label="QRS Peaks", marker='o')
+plt.title("QRS Detection")
+plt.legend()
 
 plt.show()
 
